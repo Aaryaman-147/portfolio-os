@@ -1,0 +1,27 @@
+/* src/styles/glitch.module.css */
+
+/* This animation runs continuously but only distorts for a fraction of a second 
+  every 4 seconds, giving that unpredictable "skipping" feel. 
+*/
+@keyframes subtleTear {
+  0%, 94%, 100% {
+    transform: translate(0, 0) skew(0deg);
+    filter: none;
+  }
+  95% {
+    transform: translate(-3px, 1px) skew(0.5deg);
+    filter: drop-shadow(2px 0px 0px rgba(255,0,0,0.4)) drop-shadow(-2px 0px 0px rgba(0,255,255,0.4));
+  }
+  96% {
+    transform: translate(2px, -2px) skew(-1deg);
+    filter: contrast(1.4) hue-rotate(10deg);
+  }
+  97% {
+    transform: translate(-1px, 2px) skew(0deg);
+    filter: drop-shadow(-2px 0px 0px rgba(255,0,0,0.3));
+  }
+}
+
+.glitchActive {
+  animation: subtleTear 4s infinite reverse;
+}
