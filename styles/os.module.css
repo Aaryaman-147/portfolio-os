@@ -1,0 +1,145 @@
+/* src/styles/os.module.css */
+
+.desktopContainer {
+  width: 100%;
+  height: 100%;
+  /* Using a solid color fallback until you add the actual Bliss image */
+  background-color: #004e98; 
+  background-image: url('/assets/bliss.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  font-family: Tahoma, "Segoe UI", sans-serif;
+}
+
+.iconGrid {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 24px;
+  padding: 16px;
+  height: calc(100% - 40px); /* Leave room for the future taskbar */
+}
+
+.desktopIcon {
+  width: 74px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Authentic XP icon hover state */
+.desktopIcon:hover .iconImage {
+  filter: brightness(1.1);
+}
+
+.desktopIcon:hover .iconText {
+  background-color: rgba(11, 88, 204, 0.6);
+}
+
+.iconImage {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
+  /* Ensure the image fits nicely without distortion */
+  object-fit: contain; 
+  /* Removed all the border-hacks we used for the fake folder! */
+}
+
+.iconImage::before {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: -10px;
+  width: 58px;
+  height: 20px;
+  background-color: #eab92d;
+}
+
+.iconText {
+  color: white;
+  font-size: 11px;
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
+  padding: 2px 4px;
+  border-radius: 2px;
+  user-select: none;
+}
+
+.taskbar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #245edb 92%, #1941a5 100%);
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+}
+
+.startButton {
+  height: 100%;
+  padding: 0 15px;
+  background: linear-gradient(to bottom, #388e3c 0%, #4caf50 10%, #388e3c 90%, #1b5e20 100%);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+  gap: 5px;
+}
+
+.startLogo {
+  width: 16px;
+  height: 16px;
+  background: white; /* Placeholder for the flag */
+  clip-path: polygon(0% 20%, 100% 0%, 100% 80%, 0% 100%);
+}
+
+.windowTabs {
+  flex: 1;
+  display: flex;
+  padding: 0 10px;
+  gap: 5px;
+}
+
+.tab {
+  background: #3a79ff;
+  color: white;
+  padding: 2px 10px;
+  font-size: 11px;
+  border-radius: 3px;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.activeTab {
+  background: #1e52cb;
+  box-shadow: inset 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.systemTray {
+  margin-left: auto;
+  height: 100%;
+  padding: 0 10px;
+  background: linear-gradient(to bottom, #0997ff 0%, #0053ee 100%);
+  border-left: 1px solid #111;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 11px;
+  gap: 10px;
+}
