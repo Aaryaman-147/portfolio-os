@@ -20,19 +20,30 @@ import SystemProperties from "./apps/SystemProperties";
 export default function Desktop() {
   const { windows, openWindow } = useWindowManager();
   const { isGlitching, triggerGlitch, restoreMemory } = useGlitch();
-// 2. Add this state variable for the counter
-  const [visitorCount, setVisitorCount] = useState<number>(0);
+  
+  // 1. Change this to a string so we can show "LOADING..." while it fetches
+  const [visitorCount, setVisitorCount] = useState<string>("LOADING...");
+  
   // --- ADD THIS BLOCK ---
   useEffect(() => {
-    // 3. Generate a fun, believable retro number (e.g., starting at 14,000 and adding a random offset)
-    // If you ever want a REAL counter, you can replace this math with a fetch() call to Firebase!
-    const simulatedCount = 14208 + Math.floor(Math.random() * 100);
-    setVisitorCount(simulatedCount);
-    // This runs once when the Desktop mounts
+    // 2. Open the README immediately when the desktop mounts
     openWindow("README", "README.txt - Notepad");
     
+    // 3. Fetch the REAL count from our new Upstash API!
+    fetch('/api/counter')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.count) {
+          setVisitorCount(data.count.toString());
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to fetch visitor count", err);
+        setVisitorCount("ERROR"); // Fallback if the network drops
+      });
+      
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); 
+  }, []);
   // ----------------------
 
   const handleDoubleClick = (id: string, title: string) => {
