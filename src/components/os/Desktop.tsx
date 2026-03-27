@@ -16,7 +16,6 @@ import InternetExplorer from "./apps/InternetExplorer";
 import RunDialog from "./apps/RunDialog";
 import SystemProperties from "./apps/SystemProperties";
 
-
 export default function Desktop() {
   const { windows, openWindow } = useWindowManager();
   const { isGlitching, triggerGlitch, restoreMemory } = useGlitch();
@@ -157,6 +156,27 @@ export default function Desktop() {
           />
           <span className={styles.iconText}><GlitchText text="aaryaman.exe" /></span>
         </div>
+
+        {/* --- NEW README ICON (Absolute positioned to top right) --- */}
+      <div 
+        className={styles.desktopIcon} 
+        style={{ 
+          position: "absolute", 
+          top: "20px", 
+          right: "20px" 
+        }}
+        onDoubleClick={() => handleDoubleClick("README", "README.txt - Notepad")}
+      >
+        <Image 
+          src="/assets/my-documents.png" /* Change this to a text file icon if you have one! */
+          alt="README.txt" 
+          width={48} 
+          height={48} 
+          className={styles.iconImage} 
+          draggable={false} 
+        />
+        <span className={styles.iconText}><GlitchText text="README.txt" /></span>
+      </div>
 
       </div>
 
