@@ -22,20 +22,7 @@ Instead of a traditional website, this project presents my work, projects, and i
 * **Next.js**
 * **React**
 * **TypeScript**
-* **CSS / Tailwind (if used)**
-
----
-
-## 🚀 Getting Started
-
-Clone the repository:
-
-```bash
-git clone https://github.com/your-username/aaryaman-os.git
-cd aaryaman-os
-npm install
-npm run dev
-```
+* **CSS / Tailwind**
 
 ---
 
