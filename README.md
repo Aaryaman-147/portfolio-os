@@ -38,7 +38,6 @@ It focuses on interaction, familiarity, and making exploration feel natural rath
 
 ## 📌 Future Improvements
 
-* Save session / persistent desktop state
 * Shareable desktop links
 * Expanded app system
 * Additional UI polish and animations
