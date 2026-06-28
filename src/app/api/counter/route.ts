@@ -14,6 +14,6 @@ export async function GET() {
   } catch (error) {
     console.error("Redis Error:", error);
     // Fallback retro number just in case the database ever sleeps or fails
-    return NextResponse.json({ count: 14208 }, { status: 500 }); 
+    return NextResponse.json({ count: 208 }, { status: 500 }); 
   }
 }
