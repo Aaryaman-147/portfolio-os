@@ -27,6 +27,7 @@ const RESUME_CSS = `
   box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
+  max-height: calc(100vh - 80px);
 }
 
 .xp-titlebar {
@@ -79,8 +80,9 @@ const RESUME_CSS = `
 /* --- THE FIXES ARE HERE --- */
 .xp-document-container { 
   background-color: #808080 !important; 
-  padding: 20px; 
-  display: block; /* Removes Flexbox restrictions to fix the grey cutoff */
+  padding: 20px 20px 0 20px;
+  min-height: 0; 
+  display: flex; /* Removes Flexbox restrictions to fix the grey cutoff */
   overflow-y: auto; 
   flex: 1; /* Stretches to fill Notepad */
   border: 2px solid; 
@@ -88,11 +90,19 @@ const RESUME_CSS = `
   background-image: none !important; /* Kills global scanlines */
 }
 
+.xp-document-container::after {
+  content: "";
+  display: block;
+  height: 20px;
+  width: 100%;
+}
+
 .xp-document-page { 
   background-color: #ffffff !important; 
   width: 100%; 
   max-width: 210mm; /* Forces A4 width */
   margin: 0 auto; /* Centers the paper horizontally */
+  flex-shrink: 0;
   min-height: 297mm; 
   height: max-content; /* Forces the white background to stretch with content! */
   padding: 30px 40px; 
@@ -251,7 +261,7 @@ const Resume: React.FC = () => {
       links: {
         github: "github.com/Aaryaman-147",
         linkedin: "linkedin.com/in/aaryaman-arora/",
-        portfolio: "aaryaman-dev.vercel.app"
+        portfolio: "aaryaman.me"
       }
     },
     education: [
@@ -279,7 +289,7 @@ const Resume: React.FC = () => {
     ],
     skills: {
       languages: ["JavaScript (ES6+)", "Python", "HTML", "CSS"],
-      frameworks: ["React.js", "Three.js", "Node.js", "Tailwind CSS", "Flutter", "Vite", "Browser Extension APIs"],
+      frameworks: ["React.js", "Three.js", "Node.js", "Tailwind CSS", "Flutter", "Vite"],
       tools: ["Git", "GitHub", "Firebase", "Figma", "VS Code", "Chrome DevTools", "Vercel"],
       soft: ["Leadership", "Team Collaboration", "Strategic Planning", "Problem Solving"]
     },
@@ -289,6 +299,18 @@ const Resume: React.FC = () => {
         types: ["HealthTech", "Research", "IoT"],
         tech: "Arduino · Sensors · Biomedical Instrumentation · Embedded Systems",
         desc: "Proposed and prototyped a non-invasive smart bandage system for early graft failure detection using embedded sensors and data visualization."
+      },
+      {
+        title: "BioCUDA",
+        types: ["Machine Learning", "AI Infrastructure"],
+        tech: "PyTorch · CUDA Graphs · FastAPI · React.js · Scikit-Learn",
+        desc: "A dual-branch, high-throughput machine learning infrastructure for executing 3 Billion parameter foundational models (ESM-2) on constrained hardware and enterprise A100 clusters."
+      },
+      {
+        title: "Northstar – Enterprise Goal Governance Platform",
+        types: ["Enterprise Software", "Analytics", "Workflow Automation"],
+        tech: "Next.js · FastAPI · Supabase · PostgreSQL",
+        desc: "Developed a full-stack enterprise goal management platform with role-based workflows, analytics dashboards, audit logging, and AI-assisted goal tracking using Next.js, FastAPI, and Supabase."
       },
       {
         title: "End-to-End MLOps Pipeline",
@@ -324,14 +346,15 @@ const Resume: React.FC = () => {
     achievements: [
       {
         title: "Hack4Help (Israeli Indian Hackathon)",
-        role: "Top 10 Finalist | Team Lead",
+        role: "Top 10 Finalist | Team Lead | Conference Presenter",
         tech: "System Design · Prototyping",
         desc: "Led a multidisciplinary team to design a smart bandage system. Qualified through multiple screening rounds to present a functional hardware-software demo in the finals.",
         details: [
           "Integrated temperature sensors with Arduino for real-time monitoring.",
           "Oversaw development of a live data dashboard and coordinated integration of hardware and software components",
           "Presented the final in-person pitch and functional demo during the 24-hour hackathon",
-          "Selected among Top 10 teams based on innovation and feasibility."
+          "Selected among Top 10 teams based on innovation and feasibility.",
+          "Abstract published in the TISCR Book of Abstracts"
         ]
       },
       {
@@ -343,6 +366,16 @@ const Resume: React.FC = () => {
     ],
     leadership: [
       {
+        role: "Tech Lead",
+        org: "Nucleus",
+        date: "May 2026 - Present",
+        desc: ""
+      },{
+        role: "EC – R&D",
+        org: "Nucleus",
+        date: "Feb 2026 - May 2026",
+        desc: ""
+      },{
         role: "Core Member – Logistics",
         org: "Saturnalia",
         date: "2025 - Present",
@@ -424,6 +457,24 @@ const Resume: React.FC = () => {
               <div className="xp-body-grid">
                 {/* --- LEFT COLUMN: Main Content --- */}
                 <main className="xp-main-col">
+
+                  <fieldset className="xp-fieldset">
+                    <legend className="xp-legend">💼 Experience</legend>
+                    
+                    {/* --- NEW INTERNSHIP CARD --- */}
+                    <div className="xp-card">
+  <div className="xp-card-header">
+    <h4>PDL–DSP Intern — Premas Biotech</h4>
+    <span className="xp-tech-text">May 2026 – June 2026</span>
+  </div>
+                      <p className="xp-desc">
+                        • Built an AI-assisted platform to streamline chromatography workflow recommendation for protein purification.<br/>
+    • Developed sequence analysis pipelines using physicochemical protein properties.<br/>
+    • Worked closely with researchers to convert laboratory workflows into intuitive software tools.<br/>
+    • Gained exposure to downstream process development, protein purification, and industrial bioprocess workflows.
+                      </p>
+                    </div>
+                  </fieldset>
                   
                   <fieldset className="xp-fieldset">
                     <legend className="xp-legend">📂 Projects</legend>
@@ -461,16 +512,7 @@ const Resume: React.FC = () => {
                     ))}
                   </fieldset>
 
-                  <fieldset className="xp-fieldset">
-                    <legend className="xp-legend">💼 Experience</legend>
-                    <div className="xp-card no-border">
-                      <div className="xp-card-header">
-                        <h4>Independent Developer</h4>
-                        <span className="xp-tech-text">2024 - Present</span>
-                      </div>
-                      <p className="xp-desc">Designed and built multiple web applications and tools focusing on real-world use cases. Worked with APIs, frontend logic, and UI design to deliver functional, user-focused products.</p>
-                    </div>
-                  </fieldset>
+                  
                 </main>
 
                 {/* --- RIGHT COLUMN: Sidebar --- */}
